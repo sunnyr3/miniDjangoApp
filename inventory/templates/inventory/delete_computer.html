@@ -1,0 +1,12 @@
+
+
+{% block content %}
+<form method="POST">{% csrf_token %}
+    Confirm to delete this computer:
+    <ul>
+        <li>Manufacturer: {{ computer.manufacturer }}</li>
+        <li>Serial Number: {{ computer.serial_number }}</li>
+    </ul>
+    <input type="submit" value="Delete" />
+</form>
+{% endcontent %}

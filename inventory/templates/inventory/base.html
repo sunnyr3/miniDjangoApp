@@ -1,0 +1,13 @@
+{% load static %}
+<!DOCTYPE html>
+<head>
+    {% block title %}
+    <title>Mini Django App</title>
+    {% endblock %}
+</head>
+
+<body>
+    <p><a href="{% url 'inventory:index' %}">Click to view computer inventories</a></p>
+</body>
+
+</html>

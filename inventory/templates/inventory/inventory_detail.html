@@ -1,0 +1,35 @@
+{% black content %}
+
+{% if inventory %}
+    <h1>{{ inventory.inventory_name }}</h1>
+{% endif %}
+
+{% if computer %}
+    <table>
+        <thead>
+            <tr>
+                <th>Manufacturer</th>
+                <th>Serial Number</th>
+                <th>Comments</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for comp in computer %}
+                <tr>
+                    <td>{{comp.manufacturer}}</td>
+                    <td>{{comp.serial_number}}</td>
+                    <td>{{comp.Comments}}</td>
+                    <td>
+                        <li><a href="{% url 'inventory:edit_computer' inventory.id comp.id %}">Edit</a></li>
+                        <li><a href="{% url 'inventory:delete_computer' inventory.id computer.id %}">Delete</a></li>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <p>No computer yet.</p>
+{% endif %}
+
+{% endblock %}

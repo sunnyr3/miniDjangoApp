@@ -1,0 +1,18 @@
+{% block content %}
+<h1>Inventories</h1>
+
+{% if all_inventories %}
+    <ul>
+        {% for inventory in all_inventories %}
+            <li><a href="{% url 'inventory:inventory_detail' inventory.id %}">{{ inventory.inventory_name }}</a></li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No inventory yet.</p>
+{% endif %}
+
+<form action="inventory/add_inventory">
+    {% csrf_token %}
+    <input type="submit" value="Add Inventory" />
+</form>
+{% endblock %}
