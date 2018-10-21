@@ -1,10 +1,31 @@
-
-
 {% block content %}
 <h1>Edit Computer</h1>
+
+<h2>Previous Info</h2>
+<table style="width:50%">
+    <thead>
+        <tr>
+            <td><strong>Manufacturer</strong></td>
+            <td><strong>Serial Number</strong></td>
+            <td><strong>Comments</strong></td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            {% if computer %}
+            <td>{{computer.manufacturer}}</td>
+            <td>{{computer.serial_number}}</td>
+            <td>{{computer.comments}}</td>
+            {% endif %}
+        </tr>
+    </tbody>
+</table>
 
 <form method="POST" class="form">{% csrf_token %}
     {{ form.as_p }}
     <button type="submit">Save</button>
 </form>
+
+<a><input type="button" value="Cancel"></a>
+
 {% endblock %}

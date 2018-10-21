@@ -1,17 +1,17 @@
-{% black content %}
+{% block content %}
 
 {% if inventory %}
     <h1>{{ inventory.inventory_name }}</h1>
 {% endif %}
 
 {% if computer %}
-    <table>
+    <table style="width:50%">
         <thead>
             <tr>
-                <th>Manufacturer</th>
-                <th>Serial Number</th>
-                <th>Comments</th>
-                <th></th>
+                <td><strong>Manufacturer</strong></td>
+                <td><strong>Serial Number</strong></td>
+                <td><strong>Comments</strong></td>
+                <td></td>
             </tr>
         </thead>
         <tbody>
@@ -19,10 +19,10 @@
                 <tr>
                     <td>{{comp.manufacturer}}</td>
                     <td>{{comp.serial_number}}</td>
-                    <td>{{comp.Comments}}</td>
+                    <td>{{comp.comments}}</td>
                     <td>
                         <li><a href="{% url 'inventory:edit_computer' inventory.id comp.id %}">Edit</a></li>
-                        <li><a href="{% url 'inventory:delete_computer' inventory.id computer.id %}">Delete</a></li>
+                        <li><a href="{% url 'inventory:delete_computer' inventory.id comp.id %}">Delete</a></li>
                     </td>
                 </tr>
             {% endfor %}
@@ -31,5 +31,12 @@
 {% else %}
     <p>No computer yet.</p>
 {% endif %}
+
+<form action="add_computer">
+    {% csrf_token %}
+    <input type="submit" value="Add Computer" />
+</form>
+
+<a href="/inventory/"><input type="button" value="Back to main"></a>
 
 {% endblock %}
