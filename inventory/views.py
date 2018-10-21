@@ -27,10 +27,9 @@ def inventory_detail(request, inventory_id):
 def add_inventory(request):
     if request.method == "POST":
         form = inventoryForm(request.POST)
-        if form.is_valid():
-            form.save()
-            url = "/inventory/"
-            return HttpResponseRedirect(url)
+        form.save()
+        url = "/inventory/"
+        return HttpResponseRedirect(url)
     else:
         form = inventoryForm()
     context = { 'form': form }
@@ -58,11 +57,10 @@ def edit_computer(request, inventory_id, computer_id):
     computer = get_object_or_404(Computer, pk=computer_id)
     if request.method == "POST":
         form = computerForm(request.POST, instance=computer)
-        # If the form is valid, then save it and return to the corresponding inventory page
-        if form.is_valid():
-            form.save()
-            url = "/inventory/" + str(inventory_id) + "/" + str(computer_id) + "/"
-            return HttpResponseRedirect(url)
+        # Save the editted form and return to the corresponding inventory page
+        form.save()
+        url = "/inventory/" + str(inventory_id) + "/"
+        return HttpResponseRedirect(url)
     else:
         form = computerForm()
     context = { 
